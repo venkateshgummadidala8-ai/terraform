@@ -1,20 +1,20 @@
 resource "aws_instance" "roboshop" {
   #count         = 10
-  count = length(var.instances)
+  count = length (var.instance_type)
   ami           = var.ami_id
   instance_type = var.instance_type
   vpc_security_group_ids = [
     aws_security_group.roboshop[count.index].id,
   aws_security_group.common.id] # list
   tags = {
-    name = "${var.project}-${var.environment}-${var.instances[count.index]}"   #interpolation
+    name = "$ {var.project}-$ {var.environment}-$ {var.instance_type [count.index]}"   #interpolation
   }
 }
 
 #it will create default vpc
 resource "aws_security_group" "roboshop" {
   count       = 10
-  name        = "${var.project}-${var.environment}-${var.instances[count.index]}" 
+  name        = "$ {var.project}-$ {var.environment}-$ {var.instance_type [count.index]}"
   description = "Allow Terraform inbound traffic and all outbound traffic"
 
   # outbound traffic
@@ -25,13 +25,13 @@ resource "aws_security_group" "roboshop" {
     cidr_blocks = var.cidr # list
   }
   tags = {
-   name = "${var.project}-${var.environment}-${var.instances[count.index]}" 
+   name = "$ {var.project}-$ {var.environment}-$ {var.instance_type [count.index]}"
   }
 }
 
 
 resource "aws_security_group" "common" {
-  name        = "${var.project}-${var.environment}-common"
+  name        = "$ {var.project}-$ {var.environment}-common"
   description = "Allow Terraform inbound traffic and all outbound traffic"
 
   # outbound traffic

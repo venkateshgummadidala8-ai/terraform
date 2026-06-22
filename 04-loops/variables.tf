@@ -54,3 +54,12 @@ variable "zone_id" {
 variable "domain_name" {
   default = "harshu.fun"
 }
+
+variable "common-tags" {
+  type = map()
+  default = {
+    Name = "allow_terraform"
+    project     = "roboshop"
+    Environment = "dev"
+  }
+}
