@@ -56,7 +56,7 @@ variable "domain_name" {
 }
 
 variable "common-tags" {
-  type = map()
+  type = map(any)
   default = {
     Name = "allow_terraform"
     project     = "roboshop"
