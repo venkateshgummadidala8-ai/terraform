@@ -60,6 +60,5 @@ variable "common-tags" {
   default = {
     Name = "allow_terraform"
     project     = "roboshop"
-    Environment = "dev"
-  }
+      }
 }
