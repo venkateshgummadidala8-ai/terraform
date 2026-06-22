@@ -57,12 +57,12 @@ variable "sg_tags" {
 
 }
 
-variable "common_tags" {
-  type = map()
-  default = {
-    Name = "allow_terraform"
-    project     = "roboshop"
-    Environment = "dev"
-  }
+# #variable "common_tags" {
+#   type = map( any)
+#   default = {
+#     Name = "allow_terraform"
+#     project     = "roboshop"
+#     Environment = "dev"
+#   }
   
-}
+# }
