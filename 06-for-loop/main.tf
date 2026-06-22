@@ -1,6 +1,6 @@
 resource "aws_instance" "roboshop" {
-  count         = 10
-  #count =  length (var.instance_type)
+  for_each = var.instances
+  
   ami           = var.ami_id
   instance_type = var.instance_type
   vpc_security_group_ids = [
