@@ -37,20 +37,12 @@ variable "cidr" {
 
 }
 variable "instances" {
-  type = map 
+  type = map(any)
   default = {
-    mongodb = "t2.micro"
-    redis = "t2.micro"
-    frontend = "t2.micro" 
-    frontend = "t2.micro"
-    mysql = "t2.micro"
-    rabbitmq = "t2.micro"
-    catalogue = "t2.micro"  
-    user = "t2.micro"
-    cart = "t2.micro"
-    shipping = "t2.micro"
-    payment = "t2.micro"
-  }
+    mongodb = {
+                 "instance_type" = "t2.micro"
+              }
+      }
 
 }
 

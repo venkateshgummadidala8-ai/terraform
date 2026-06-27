@@ -13,8 +13,8 @@ resource "aws_instance" "roboshop" {
 
 #it will create default vpc
 resource "aws_security_group" "roboshop" {
-  count       = 10
-  name        = "${var.project}-${var.environment}-${("var.instance_type"), [count.index]}"
+  for_each = var.instances
+  name        = "${var.project}-${var.environment}-${each.key}"
   description = "Allow Terraform inbound traffic and all outbound traffic"
 
   # outbound traffic
@@ -25,7 +25,7 @@ resource "aws_security_group" "roboshop" {
     cidr_blocks = var.cidr # list
   }
   tags = {
-   name = " ${var.project}-${var.environment}-${"var.instance_type", [count.index]}"
+   name = " ${var.project}-${var.environment}-${each.key}"
   }
 }
 
